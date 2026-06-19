@@ -1,0 +1,80 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model User {
+  id        String   @id @default(cuid())
+  walletId  String   @unique
+  role      String   @default("BUSINESS") // "BUSINESS" or "INVESTOR"
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  business Business?
+}
+
+model Business {
+  id          String   @id @default(cuid())
+  userId      String   @unique
+  name        String
+  industry    String
+  country     String
+  website     String?
+  description String?
+  score       Int      @default(50)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user              User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+  invoices          Invoice[]
+  reputationHistory ReputationHistory[]
+}
+
+model Invoice {
+  id           String   @id @default(cuid())
+  businessId   String
+  invoiceNum   String
+  customerName String
+  amount       Float
+  dueDate      DateTime
+  status       String   @default("Draft") // "Draft", "Tokenized", "Funded", "Settled"
+  tokenId      String?  @unique // Soroban smart contract token ID
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  business Business    @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  funding  Funding?
+  settlement Settlement?
+}
+
+model Funding {
+  id         String   @id @default(cuid())
+  invoiceId  String   @unique
+  investorId String   // walletId of investor
+  amount     Float
+  createdAt  DateTime @default(now())
+
+  invoice Invoice @relation(fields: [invoiceId], references: [id], onDelete: Cascade)
+}
+
+model Settlement {
+  id         String   @id @default(cuid())
+  invoiceId  String   @unique
+  amount     Float
+  createdAt  DateTime @default(now())
+
+  invoice Invoice @relation(fields: [invoiceId], references: [id], onDelete: Cascade)
+}
+
+model ReputationHistory {
+  id          String   @id @default(cuid())
+  businessId  String
+  scoreChange Int
+  reason      String
+  createdAt   DateTime @default(now())
+
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+}

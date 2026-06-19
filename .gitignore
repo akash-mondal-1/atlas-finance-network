@@ -1,0 +1,30 @@
+# Next.js / Node
+node_modules/
+**/node_modules/
+.next/
+**/.next/
+
+# Rust / Soroban
+target/
+**/target/
+cargo-target/
+**/cargo-target/
+.cargo/
+Cargo.lock
+
+# Database / Cache
+*.db
+*.db-journal
+dev.db
+dev.db-journal
+
+# Logs
+*.log
+
+# IDEs
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln

@@ -1,0 +1,11 @@
+{
+  "name": "atlas-finance-network",
+  "version": "1.0.0",
+  "description": "Atlas Finance Network MVP",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "contracts/*"
+  ]
+}
