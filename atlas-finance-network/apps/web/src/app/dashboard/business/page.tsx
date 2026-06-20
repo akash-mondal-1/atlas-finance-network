@@ -7,6 +7,8 @@ import { InvoiceCreationForm } from './invoice-form';
 import { SettleButton } from './settle-button';
 import { Invoice, ReputationHistory } from '@prisma/client';
 
+export const dynamic = 'force-dynamic';
+
 export default async function BusinessDashboard() {
   const cookieStore = await cookies();
   const walletId = cookieStore.get('walletId')?.value;

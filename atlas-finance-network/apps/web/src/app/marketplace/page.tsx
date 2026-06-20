@@ -9,6 +9,8 @@ type InvoiceWithBusiness = Invoice & {
   business: Business;
 };
 
+export const dynamic = 'force-dynamic';
+
 export default async function Marketplace() {
   const cookieStore = await cookies();
   const walletId = cookieStore.get('walletId')?.value;
