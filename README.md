@@ -4,6 +4,13 @@ Atlas Finance Network is a Stellar-powered credit reputation and invoice financi
 
 Built for the Stellar Startup Track.
 
+## Demo Video
+
+A complete walkthrough of the Atlas Finance Network MVP, including wallet authentication, invoice tokenization, marketplace funding, reputation scoring, and settlement workflows on Stellar Testnet.
+
+🎥 Demo:
+https://youtu.be/5IdmSjPMviM?si=GsIzaXQi-7NJ0gdu
+
 ## Screenshots
 
 ### Business Dashboard
