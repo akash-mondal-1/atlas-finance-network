@@ -1,3 +1,8 @@
+# Environment variables (never commit secrets)
+.env
+.env.local
+.env*.local
+
 # Next.js / Node
 node_modules/
 **/node_modules/
